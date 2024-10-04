@@ -589,6 +589,8 @@ class AsyncWebSocketSession:
 
     async def __aenter__(self):
         self._exit_stack = contextlib.AsyncExitStack()
+        self._exit_stack.push_async_callback(self._send_event.aclose)
+        self._exit_stack.push_async_callback(self._receive_event.aclose)
         self._background_task_group = anyio.create_task_group()
         await self._exit_stack.enter_async_context(self._background_task_group)
 
