@@ -1,4 +1,4 @@
-__version__ = "0.6.0"
+__version__ = "0.6.0.dev0"
 
 from ._api import (
     AsyncWebSocketSession,
